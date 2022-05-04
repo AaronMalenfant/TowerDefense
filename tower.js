@@ -65,7 +65,7 @@ export default class TowerDefense extends Phaser.Scene {
     //game.time.events.repeat(Phaser.Timer.SECOND, 10, createZombie, this);
     //this.createZombie();
     this.base = new Base(this, 500, 0, 'base');
-    this.time.addEvent({ delay: 500, callback: this.createZombie, callbackScope: this, repeat: 100 });
+    this.time.addEvent({ delay: 500, callback: this.createZombie, callbackScope: this, repeat: 10 });
     this.physics.add.collider(this.missileGroup, this.zombieGroup, 
                               function(s1, s2) {                                
                                 self.hit(s1, s2);
@@ -120,7 +120,8 @@ export default class TowerDefense extends Phaser.Scene {
 	
   shootMissile() {
     this.missile = this.missileGroup.get(400, 350);    
-    this.missile.setTarget(this.zombieGroup)
+    this.missile.setTarget(this.zombieGroup);
+    this.missile.onAdd();
 
   }
   createZombie() {

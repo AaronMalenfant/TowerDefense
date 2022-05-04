@@ -1,6 +1,7 @@
  export default class Missile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture, targetGroup) {
     super(scene, x, y, 'missile');
+    this.SIZE=20;
     //this.setSize(10, 10);
 
     const tx = scene.scale.width * 0.5
@@ -13,15 +14,16 @@
     
     this.setActive(true);
     this.setVisible(true);    
-    this.scene.events.on('addedtoscene', this.onAdd, this);
 
 
-    this.setDisplaySize(10,10);
+    
     
   }
   onAdd() {
+    console.log("addedtoscene");
     
-    this.setSize(10,10);
+    this.setSize(this.SIZE,this.SIZE);
+    this.setDisplaySize(this.SIZE,this.SIZE);
     
   }
   setTarget(targetGroup) {

@@ -6,7 +6,7 @@ const config = {
   height: 600,
   physics: {
     default: 'arcade',
-    matter: {
+    arcade: {
       gravity: {y: 0},
       debug: true
     }
