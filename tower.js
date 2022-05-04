@@ -11,7 +11,7 @@ const ZOMBIE = 'zombie';
 export default class TowerDefense extends Phaser.Scene {
   constructor() {
     super('missile-demo')
-    console.log("TowerDefense scene-constructor");
+    
     /** @type {Missile} */
     this.missile = null
     this.hearts = 100;
@@ -63,13 +63,27 @@ export default class TowerDefense extends Phaser.Scene {
     //scene.scale.toggleFullscreen();
     let self = this;
     //game.time.events.repeat(Phaser.Timer.SECOND, 10, createZombie, this);
-    this.createZombie();
+    //this.createZombie();
     this.base = new Base(this, 500, 0, 'base');
-    this.time.addEvent({ delay: 1000, callback: this.createZombie, callbackScope: this, repeat: 9 });
+    this.time.addEvent({ delay: 1000, callback: this.createZombie, callbackScope: this, repeat: 10 });
     this.physics.add.collider(this.missileGroup, this.zombieGroup, 
                               function(s1, s2) {                                
                                 self.hit(s1, s2);
                               });
+      this.physics.world.on('worldbounds', function(b) {
+        if (!b || !b.gameObject) {
+          return;
+        }
+        let t = b.gameObject;
+        if (t.zombie) {
+     
+          self.hearts--;
+           console.log("die " + self.hearts);
+          self.setHearts();
+          t.destroy();
+        }
+    });
+  
 
   }
   hit(missle, zombie) {
@@ -88,6 +102,7 @@ export default class TowerDefense extends Phaser.Scene {
     //this.missile.setTarget(this.zombie);
   }
   setHearts() {
+    //this.heartsText.clearText();
     this.heartsText = this.add.text(16, 16,
       'hearts: ' + this.hearts + ", money = " + this.money,
       {fontSize: '32px', fill: '#000'});
@@ -101,13 +116,13 @@ export default class TowerDefense extends Phaser.Scene {
  
 	
   shootMissile() {
-    this.missile = this.missileGroup.get(0, 0);    
+    this.missile = this.missileGroup.get(400, 350);    
     this.missile.setTarget(this.zombieGroup)
 
   }
   createZombie() {
     this.zombie = this.zombieGroup.get(50, this.game.config.height /2.1, true);
-    //this.add.zombie(50, this.game.config.height /2, ZOMBIE);
+    this.zombie.setup();
   }
   update(t, dt) {
 	// Loop over all keys

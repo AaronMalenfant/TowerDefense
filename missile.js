@@ -8,20 +8,20 @@
 
     this.targetGroup = targetGroup;// || new Phaser.Math.Vector2(tx, ty)
 
-    this.turnDegreesPerFrame = 15
-    this.speed = 200
+    this.turnDegreesPerFrame = 10
+    this.speed = 300
     
     this.setActive(true);
     this.setVisible(true);    
     this.scene.events.on('addedtoscene', this.onAdd, this);
 
 
-    this.setDisplaySize(20,20);
-    console.log("");
+    this.setDisplaySize(10,10);
+    
   }
   onAdd() {
-    console.log("onAdd);")
-    this.setSize(20,20);
+    
+    this.setSize(10,10);
     
   }
   setTarget(targetGroup) {
@@ -32,7 +32,7 @@
         super.preUpdate(time, delta);
 
       if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
-        console.log(" ");
+       
         return;
       }
         
@@ -70,12 +70,12 @@
     this.body.velocity.y = vy
     }
   hit(zombie) {
-    console.log(" ");
+    
     this.destroy();		
   }
 
   update(dt) {
-    console.log("update");
+    
    
   }
 }
