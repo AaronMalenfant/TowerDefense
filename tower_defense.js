@@ -40,6 +40,7 @@ export default class TowerDefense extends Phaser.Scene {
   create() {
    
 
+
     
     this.add.image(0, 0, 'background').setOrigin(0, 0).setDisplaySize(
       this.game.config.width, this.game.config.height);
@@ -124,8 +125,8 @@ export default class TowerDefense extends Phaser.Scene {
  
 	
   shootMissile() {
-    let shooter = this.towerGroup.get(200, 200);
-    shooter.setup(this.missileGroup);
+    let shooter = this.towerGroup.get(50,50);
+    shooter.setup(this.missileGroup, this.zombieGroup);
     // this.missile = this.missileGroup.get(400, 350);    
     // this.missile.setTarget(this.zombieGroup);
     // this.missile.onAdd();

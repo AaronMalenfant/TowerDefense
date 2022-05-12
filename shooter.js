@@ -9,8 +9,9 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 	preUpdate(t, dt) {
       
 	}
-	setup(missileGroup) {
+	setup(missileGroup, zombieGroup) {
     this.missileGroup = missileGroup;
+    this.zombieGroup = zombieGroup;
    // this.scene.time = time;
 		this.setSize(this.SIZE, this.SIZE);
 		this.setDisplaySize(this.SIZE,this.SIZE);
@@ -18,8 +19,7 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	shoot() {
-    console.log("pew");
-		this.missile = this.missileGroup.get(400, 350);    
+		this.missile = this.missileGroup.get(this.x, this.y);    
 		this.missile.setTarget(this.zombieGroup);
 		this.missile.onAdd();
     

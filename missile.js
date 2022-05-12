@@ -18,7 +18,6 @@
   onAdd() {
     this.setSize(this.SIZE,this.SIZE);
     this.setDisplaySize(this.SIZE,this.SIZE);
-    
   }
   setTarget(targetGroup) {
     this.targetGroup = targetGroup;
