@@ -3,6 +3,7 @@ import Missile from './missile.js'
 import MissileGroup from './missile_group.js'
 import Zombie from './zombie.js'
 import ZombieGroup from './zombie_group.js'
+import TowerGroup from './tower_group.js'
 import Base from './base.js'
 
 const MISSILE = 'missile';
@@ -37,6 +38,9 @@ export default class TowerDefense extends Phaser.Scene {
   }
 
   create() {
+   
+
+    
     this.add.image(0, 0, 'background').setOrigin(0, 0).setDisplaySize(
       this.game.config.width, this.game.config.height);
     this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
@@ -45,11 +49,11 @@ export default class TowerDefense extends Phaser.Scene {
     this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
     
 
-    this.shoter_guy = this.physics.add.image(365, this.game.config.height / 1.625,
+    this.shoter_guy = this.physics.add.image(925, this.game.config.height /6,
       'shoter_guy').setScale(0.32, 0.32);
 
-    this.tank = this.physics.add.image(50, this.game.config.height / 1.25,
-      'tank').setScale(0.35, 0.35);
+    this.tank = this.physics.add.image(925, this.game.config.height / 2,
+      'tank').setScale(0.2, 0.2);
 
     //this.zombie.setCollideWorldBounds(true);
     this.setHearts();
@@ -59,6 +63,7 @@ export default class TowerDefense extends Phaser.Scene {
 
     this.missileGroup = new MissileGroup(this);
     this.zombieGroup = new ZombieGroup(this);
+    this.towerGroup = new TowerGroup(this);
     this.addEvents();
     //scene.scale.toggleFullscreen();
     let self = this;
@@ -78,7 +83,7 @@ export default class TowerDefense extends Phaser.Scene {
         if (t.zombie) {
      
           self.hearts--;
-           console.log("die " + self.hearts);
+           
           self.setHearts();
           t.destroy();
         }
@@ -119,9 +124,11 @@ export default class TowerDefense extends Phaser.Scene {
  
 	
   shootMissile() {
-    this.missile = this.missileGroup.get(400, 350);    
-    this.missile.setTarget(this.zombieGroup);
-    this.missile.onAdd();
+    let shooter = this.towerGroup.get(200, 200);
+    shooter.setup(this.missileGroup);
+    // this.missile = this.missileGroup.get(400, 350);    
+    // this.missile.setTarget(this.zombieGroup);
+    // this.missile.onAdd();
 
   }
   createZombie() {
@@ -150,5 +157,6 @@ export default class TowerDefense extends Phaser.Scene {
   }
   
 }
+
 
 

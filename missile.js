@@ -9,19 +9,13 @@
 
     this.targetGroup = targetGroup;// || new Phaser.Math.Vector2(tx, ty)
 
-    this.turnDegreesPerFrame = 10
-    this.speed = 300
+    this.turnDegreesPerFrame = 20
+    this.speed = 1000
     
     this.setActive(true);
     this.setVisible(true);    
-
-
-    
-    
   }
   onAdd() {
-    console.log("addedtoscene");
-    
     this.setSize(this.SIZE,this.SIZE);
     this.setDisplaySize(this.SIZE,this.SIZE);
     

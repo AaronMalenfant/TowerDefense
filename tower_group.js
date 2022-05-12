@@ -1,11 +1,11 @@
-import Zombie from './zombie.js'
+import Shooter from './shooter.js'
 
-export default class ZombieGroup extends Phaser.Physics.Arcade.Group
+export default class TowerGroup extends Phaser.Physics.Arcade.Group
 {
 	constructor(scene) {
 		// Call the super constructor, passing in a world and a scene
 		super(scene.physics.world, scene, {
-      classType: Zombie,
+      classType: Shooter,
     }); 
 	}  
   addedToScene() {

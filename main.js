@@ -1,4 +1,4 @@
-import TowerDefense from './tower.js'
+import TowerDefense from './tower_defense.js'
 
 const config = {
   type: Phaser.AUTO,
