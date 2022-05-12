@@ -1,7 +1,7 @@
  export default class Missile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture, targetGroup) {
     super(scene, x, y, 'missile');
-    this.SIZE=20;
+    this.SIZE=10;
     //this.setSize(10, 10);
 
     const tx = scene.scale.width * 0.5
@@ -10,7 +10,7 @@
     this.targetGroup = targetGroup;// || new Phaser.Math.Vector2(tx, ty)
 
     this.turnDegreesPerFrame = 20
-    this.speed = 1000
+    this.speed = 750
     
     this.setActive(true);
     this.setVisible(true);    
@@ -24,6 +24,10 @@
   }
   preUpdate (time, delta)
     {
+      if (this.targetGroup.getLength() == 0) {
+        this.destroy();
+        return;
+      }
         super.preUpdate(time, delta);
 
       if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {

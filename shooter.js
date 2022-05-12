@@ -19,10 +19,11 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	shoot() {
-		this.missile = this.missileGroup.get(this.x, this.y);    
-		this.missile.setTarget(this.zombieGroup);
-		this.missile.onAdd();
-    
+    if (this.zombieGroup.getLength() > 0)  {
+  		this.missile = this.missileGroup.get(this.x, this.y);    
+  		this.missile.setTarget(this.zombieGroup);
+  		this.missile.onAdd();
+    }
 	}
 	hit(weapon) {
     
