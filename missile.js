@@ -10,10 +10,11 @@
     this.targetGroup = targetGroup;// || new Phaser.Math.Vector2(tx, ty)
 
     this.turnDegreesPerFrame = 20
-    this.speed = 750
+    this.speed = 750   
     
     this.setActive(true);
-    this.setVisible(true);    
+    this.setVisible(true); 
+    this.damage = 1;
   }
   onAdd() {
     this.setSize(this.SIZE,this.SIZE);
@@ -68,8 +69,7 @@
     this.body.velocity.x = vx
     this.body.velocity.y = vy
     }
-  hit(zombie) {
-    
+  hit(zombie) {  
     this.destroy();		
   }
 

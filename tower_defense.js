@@ -125,7 +125,7 @@ export default class TowerDefense extends Phaser.Scene {
  
 	
   shootMissile() {
-    let shooter = this.towerGroup.get(50,50);
+    let shooter = this.towerGroup.get(this.game.config.width * Math.random(),this.game.config.height * Math.random());
     shooter.setup(this.missileGroup, this.zombieGroup);
     // this.missile = this.missileGroup.get(400, 350);    
     // this.missile.setTarget(this.zombieGroup);

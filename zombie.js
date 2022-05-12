@@ -8,6 +8,8 @@ export default class Zombie extends Phaser.Physics.Arcade.Sprite {
           this.setActive(true);
     this.setVisible(true);  
       this.scene.events.on('addedtoscene', this.onAdd, this);
+      this.health = 4;
+
       } 
   
     preUpdate(t, dt) {
@@ -31,12 +33,17 @@ export default class Zombie extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
     
     this.body.onWorldBounds = true;
+            this.setImmovable();
     
     }
 
   hit(weapon) {
+    this.health -= weapon.damage;
+    if (this.health <= 0) {
+      this.destroy();
+    }
     
-    this.destroy();
+    
     //this.setActive(false);
 		//this.setVisible(false);
   }
