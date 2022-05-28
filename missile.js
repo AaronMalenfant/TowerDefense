@@ -1,7 +1,7 @@
- export default class Missile extends Phaser.Physics.Arcade.Sprite {
+export default class Missile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture, targetGroup) {
     super(scene, x, y, 'missile');
-    this.SIZE=10;
+    this.SIZE = 10;
     //this.setSize(10, 10);
 
     const tx = scene.scale.width * 0.5
@@ -10,33 +10,32 @@
     this.targetGroup = targetGroup;// || new Phaser.Math.Vector2(tx, ty)
 
     this.turnDegreesPerFrame = 20
-    this.speed = 750   
-    
+    this.speed = 750
+
     this.setActive(true);
-    this.setVisible(true); 
+    this.setVisible(true);
     this.damage = 1;
   }
   onAdd() {
-    this.setSize(this.SIZE,this.SIZE);
-    this.setDisplaySize(this.SIZE,this.SIZE);
+    this.setSize(this.SIZE, this.SIZE);
+    this.setDisplaySize(this.SIZE, this.SIZE);
   }
   setTarget(targetGroup) {
     this.targetGroup = targetGroup;
   }
-  preUpdate (time, delta)
-    {
-      if (this.targetGroup.getLength() == 0) {
-        this.destroy();
-        return;
-      }
-        super.preUpdate(time, delta);
+  preUpdate(time, delta) {
+    if (this.targetGroup.getLength() == 0) {
+      this.destroy();
+      return;
+    }
+    super.preUpdate(time, delta);
 
-      if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
-       
-        return;
-      }
-        
-       const target =  this.targetGroup.getChildren()[0];
+    if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
+
+      return;
+    }
+
+    const target = this.targetGroup.getChildren()[0];
 
     const targetAngle = Phaser.Math.Angle.Between(
       this.x, this.y,
@@ -68,13 +67,13 @@
 
     this.body.velocity.x = vx
     this.body.velocity.y = vy
-    }
-  hit(zombie) {  
-    this.destroy();		
+  }
+  hit(zombie) {
+    this.destroy();
   }
 
   update(dt) {
-    
-   
+
+
   }
 }
