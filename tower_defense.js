@@ -100,7 +100,12 @@ export default class TowerDefense extends Phaser.Scene {
   }
   startGame() {
     this.level++;
-    this.time.addEvent({ delay: 500 / this.level, callback: this.createZombie, callbackScope: this, repeat: this.level * 10 });
+    this.time.addEvent({ 
+      delay: 500 / this.level, 
+      callback: this.createZombie, 
+      callbackScope: this, 
+      repeat: this.level * 10 
+    });
     this.started = true;
   }
   hit(missle, zombie) {
@@ -151,7 +156,7 @@ export default class TowerDefense extends Phaser.Scene {
   }
   createZombie() {
     this.zombie = this.zombieGroup.get(50, this.game.config.height / 2.1, true);
-    this.zombie.setup();
+    this.zombie.setup(1 + (this.level / 5));
   }
   update(t, dt) {
 
