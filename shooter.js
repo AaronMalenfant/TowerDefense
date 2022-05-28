@@ -15,7 +15,7 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 		// this.scene.time = time;
 		this.setSize(this.SIZE, this.SIZE);
 		this.setDisplaySize(this.SIZE, this.SIZE);
-		this.scene.time.addEvent({ delay: 500, callback: this.shoot, callbackScope: this, repeat: 100 });
+		this.scene.time.addEvent({ delay: 500, callback: this.shoot, callbackScope: this, loop:true });
 	}
 
 	shoot() {
@@ -26,7 +26,6 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 		}
 	}
 	hit(weapon) {
-
 		this.destroy();
 		//this.setActive(false);
 		//this.setVisible(false);
