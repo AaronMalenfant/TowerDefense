@@ -27,6 +27,7 @@ export default class TowerDefense extends Phaser.Scene {
     this.started = false;
     this.background;
     this.level = 0;
+    this.zombieTimer;
 
   }
 
@@ -56,10 +57,10 @@ export default class TowerDefense extends Phaser.Scene {
       .on('pointerup', this.startGame, this);
 
     this.shoter_guy = this.physics.add.image(925, this.game.config.height / 6,
-      'shoter_guy').setScale(0.32, 0.32);
+      'shoter_guy').setScale(0.32, 0.32).setInteractive();
 
     this.tank = this.physics.add.image(925, this.game.config.height / 2,
-      'tank').setScale(0.2, 0.2);
+      'tank').setScale(0.2, 0.2).setInteractive();
 
     //this.zombie.setCollideWorldBounds(true);
     this.updateText();
@@ -99,9 +100,25 @@ export default class TowerDefense extends Phaser.Scene {
 
   }
   startGame() {
+    if ( this.zombieGroup) {      
+      console.log( this.zombieGroup.getLength());      
+      if (this.zombieGroup.getLength() > 0) {
+        console.log("there are still zombies on the screen!");
+        return;
+      }
+    }
+    if (this.zombieTimer) {     
+      let progress = this.zombieTimer.getOverallProgress();
+      console.log(progress);
+      if (progress <  1) {
+        console.log("Preview timer is still running");
+        return;
+      }
+    }
     this.level++;
-    this.time.addEvent({ 
-      delay: 500 / this.level, 
+    this.updateText();
+    this.zombieTimer = this.time.addEvent({ 
+      delay: 1250 / this.level, 
       callback: this.createZombie, 
       callbackScope: this, 
       repeat: this.level * 10 
@@ -143,9 +160,9 @@ export default class TowerDefense extends Phaser.Scene {
   createShooter(x, y) {
     //let shooter = this.towerGroup.get(this.game.config.width * Math.random(),this.game.config.height * Math.random());
     let shooterCost = 200;
-    if (this.money > shooterCost) {
+    if (this.money >= shooterCost) {
       this.money -= shooterCost;
-      let shooter = this.towerGroup.get(x, y);
+      let shooter = this.towerGroup.get(x, y).setInteractive();
       shooter.setup(this.missileGroup, this.zombieGroup);
       this.updateText();
     }
