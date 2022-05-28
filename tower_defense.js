@@ -101,7 +101,7 @@ export default class TowerDefense extends Phaser.Scene {
   }
   startGame() {
     if (this.zombieGroup) {      
-      console.log( this.zombieGroup.getLength());      
+      console.log(this.zombieGroup.getLength());      
       if (this.zombieGroup.getLength() > 0) {
         console.log("there are still zombies on the screen!");
         return;

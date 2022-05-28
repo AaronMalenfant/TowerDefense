@@ -15,10 +15,19 @@ export default class Missile extends Phaser.Physics.Arcade.Sprite {
     this.setActive(true);
     this.setVisible(true);
     this.damage = 1;
+    this.heatSeeking = false;
+    this.target = null;
   }
-  onAdd() {
+  onAdd(heatSeeking = false, damage = 1) {
     this.setSize(this.SIZE, this.SIZE);
     this.setDisplaySize(this.SIZE, this.SIZE);
+    this.heatSeeking = heatSeeking;
+    this.damage = 1;
+    this.target = this.targetGroup.getChildren()[0];
+    this.rotation = Phaser.Math.Angle.Between(
+      this.x, this.y,
+      this.target.x, this.target.y
+    );
   }
   setTarget(targetGroup) {
     this.targetGroup = targetGroup;
@@ -30,35 +39,36 @@ export default class Missile extends Phaser.Physics.Arcade.Sprite {
     }
     super.preUpdate(time, delta);
 
-    if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
-
-      return;
-    }
-
-    const target = this.targetGroup.getChildren()[0];
-
-    const targetAngle = Phaser.Math.Angle.Between(
-      this.x, this.y,
-      target.x, target.y
-    )
-
-    // clamp to -PI to PI for smarter turning
-    let diff = Phaser.Math.Angle.Wrap(targetAngle - this.rotation)
-
-    // set to targetAngle if less than turnDegreesPerFrame
-    if (Math.abs(diff) < Phaser.Math.DegToRad(this.turnDegreesPerFrame)) {
-      this.rotation = targetAngle;
-    } else {
-      let angle = this.angle
-      if (diff > 0) {
-        // turn clockwise
-        angle += this.turnDegreesPerFrame
-      } else {
-        // turn counter-clockwise
-        angle -= this.turnDegreesPerFrame
+    if (this.heatSeeking) {
+      if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
+        return;
       }
-
-      this.setAngle(angle)
+  
+      const target = this.targetGroup.getChildren()[0];
+  
+      const targetAngle = Phaser.Math.Angle.Between(
+        this.x, this.y,
+        target.x, target.y
+      )
+  
+      // clamp to -PI to PI for smarter turning
+      let diff = Phaser.Math.Angle.Wrap(targetAngle - this.rotation)
+  
+      // set to targetAngle if less than turnDegreesPerFrame
+      if (Math.abs(diff) < Phaser.Math.DegToRad(this.turnDegreesPerFrame)) {
+        this.rotation = targetAngle;
+      } else {
+        let angle = this.angle
+        if (diff > 0) {
+          // turn clockwise
+          angle += this.turnDegreesPerFrame
+        } else {
+          // turn counter-clockwise
+          angle -= this.turnDegreesPerFrame
+        }
+  
+        this.setAngle(angle)
+      }
     }
 
     // move missile in direction facing

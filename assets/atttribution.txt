@@ -1,0 +1,226 @@
+shoter_guy.png: 
+  Copyright/Attribution Notice: Riley Gombart
+  https://creativecommons.org/licenses/by/3.0/
+  https://opengameart.org/content/animated-top-down-survivor-player
+zombie.png:
+  https://opengameart.org/content/animated-top-down-zombie
+  Copyright/Attribution Notice: Riley Gombart or ChessMasterRiley
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+Also some (but not all from): https://opengameart.org/content/konita-tutorials-making-a-top-down-zombie-shooter-in-scratch
+Title:
+    Grass for scratch background
+
+Author:
+    KonitaTutorials
+
+Collaborators:
+    Invincible
+
+URL:
+    https://opengameart.org/content/grass-for-scratch-background
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+Copyright/Attribution Notice:
+    Invincible
+
+File(s):
+    * grass.png
+
+----------------------------------------
+
+Title:
+    Health Bar(10 different states)
+
+Author:
+    KonitaTutorials
+
+URL:
+    https://opengameart.org/content/health-bar10-different-states
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * heath_bars.zip
+
+----------------------------------------
+
+Title:
+    ammo
+
+Author:
+    sufan02
+
+URL:
+    https://opengameart.org/content/ammo
+
+License(s):
+    * GPL 3.0 ( http://www.gnu.org/licenses/gpl-3.0.html )
+
+File(s):
+    * ammo.png
+
+----------------------------------------
+
+Title:
+    Health Pickup
+
+Author:
+    Gerald Burke
+
+URL:
+    https://opengameart.org/content/health-pickup
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * HealthPickup.png
+
+----------------------------------------
+
+Title:
+    Bloody Wall
+
+Author:
+    tgfcoder
+
+URL:
+    https://opengameart.org/content/bloody-wall
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * ZombieInvasionBg1.png
+
+----------------------------------------
+
+Title:
+    Blood splats
+
+Author:
+    PWL
+
+URL:
+    https://opengameart.org/content/blood-splats
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+Copyright/Attribution Notice:
+    Credit as PWL if you want, not required in any way.
+
+File(s):
+    * bloodsplats_0001.png
+    * bloodsplats_0002.png
+    * bloodsplats_0003.png
+    * bloodsplats_0004.png
+    * bloodsplats_0005.png
+    * bloodsplats_0006.png
+    * bloodsplats_0007.png
+    * bloodsplats_128x128.zip
+
+----------------------------------------
+
+Title:
+    Main menu elements
+
+Author:
+    Q_x
+
+URL:
+    https://opengameart.org/content/main-menu-elements
+
+License(s):
+    * CC-BY-SA 3.0 ( http://creativecommons.org/licenses/by-sa/3.0/legalcode )
+    * GPL 3.0 ( http://www.gnu.org/licenses/gpl-3.0.html )
+
+File(s):
+    * main_menu.zip
+
+----------------------------------------
+
+Title:
+    Pixel Skulls
+
+Author:
+    scofanogd
+
+URL:
+    https://opengameart.org/content/pixel-skulls
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * skull1.png
+    * skull2.png
+    * pinkSkull1.png
+    * blueSkull1.png
+
+----------------------------------------
+
+Title:
+    Animated Top Down Zombie
+
+Author:
+    rileygombart
+
+URL:
+    https://opengameart.org/content/animated-top-down-zombie
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+Copyright/Attribution Notice:
+    Riley Gombart or ChessMasterRiley
+
+File(s):
+    * tds_zombie.zip
+
+----------------------------------------
+
+Title:
+    Animated Top Down Survivor Player
+
+Author:
+    rileygombart
+
+URL:
+    https://opengameart.org/content/animated-top-down-survivor-player
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+Copyright/Attribution Notice:
+    Riley Gombart
+
+File(s):
+    * Top_Down_Survivor.zip
+    * Survivor Spine.zip
+
+----------------------------------------
+
+Title:
+    64 crosshairs pack - Split
+
+Author:
+    LoneCoder
+
+Collaborators:
+    para
+
+URL:
+    https://opengameart.org/content/64-crosshairs-pack-split
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * Crosshairs 64.zip
+
+----------------------------------------

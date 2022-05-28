@@ -4,6 +4,7 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 		this.SIZE = 100;
 		this.setActive(true);
 		this.setVisible(true);
+    this.heatSeeking = false;
 	}
 
 	preUpdate(t, dt) {
@@ -22,7 +23,7 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
 		if (this.zombieGroup.getLength() > 0) {
 			this.missile = this.missileGroup.get(this.x, this.y);
 			this.missile.setTarget(this.zombieGroup);
-			this.missile.onAdd();
+			this.missile.onAdd(this.heatSeeking);
 		}
 	}
 	hit(weapon) {
