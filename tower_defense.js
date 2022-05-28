@@ -100,7 +100,7 @@ export default class TowerDefense extends Phaser.Scene {
 
   }
   startGame() {
-    if ( this.zombieGroup) {      
+    if (this.zombieGroup) {      
       console.log( this.zombieGroup.getLength());      
       if (this.zombieGroup.getLength() > 0) {
         console.log("there are still zombies on the screen!");
@@ -172,7 +172,7 @@ export default class TowerDefense extends Phaser.Scene {
 
   }
   createZombie() {
-    this.zombie = this.zombieGroup.get(50, this.game.config.height / 2.1, true);
+    this.zombie = this.zombieGroup.get(50, this.game.config.height * Math.random(), true);
     this.zombie.setup(1 + (this.level / 5));
   }
   update(t, dt) {
