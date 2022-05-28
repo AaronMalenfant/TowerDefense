@@ -15,14 +15,18 @@ export default class TowerDefense extends Phaser.Scene {
     
     /** @type {Missile} */
     this.missile = null
-    this.hearts = 100;
+    this.hearts = 150;
     this.heartsText;
-    this.money = 800;
+    this.money = 850;
     /** @type {MissleGroup} */    
     this.missileGroup;
     /** @type {ZombieGroup} */
     this.zombieGroup;
     this.inputKeys;
+    this.startButton;
+    this.started = false;
+    this.background;
+    this.level = 0;
 
   }
 
@@ -34,21 +38,22 @@ export default class TowerDefense extends Phaser.Scene {
     this.load.image('shoter_guy', ' assets/shoter_guy.png');
     this.load.image('tank', ' assets/tank.png');
     this.load.image('base', 'assets/base.png');
+    this.load.image('start', 'assets/start.png');
  
   }
 
   create() {
-   
-
-
     
-    this.add.image(0, 0, 'background').setOrigin(0, 0).setDisplaySize(
+    this.background = this.add.image(0, 0, 'background').setInteractive().setOrigin(0, 0).setDisplaySize(
       this.game.config.width, this.game.config.height);
     this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
     this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
     this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
     this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
-    
+    this.startButton = this.add.image(660, 550, 'start', { fill: '#0f0' })
+      .setScale(0.2, 0.2)
+      .setInteractive()
+      .on('pointerup', this.startGame, this);
 
     this.shoter_guy = this.physics.add.image(925, this.game.config.height /6,
       'shoter_guy').setScale(0.32, 0.32);
@@ -57,7 +62,7 @@ export default class TowerDefense extends Phaser.Scene {
       'tank').setScale(0.2, 0.2);
 
     //this.zombie.setCollideWorldBounds(true);
-    this.setHearts();
+    this.updateText();
     //this.zombie.on('click', this.bind(zombieLeave, this) );
     const x = this.scale.width * 0.5
     const y = this.scale.height * 0.5
@@ -71,7 +76,6 @@ export default class TowerDefense extends Phaser.Scene {
     //game.time.events.repeat(Phaser.Timer.SECOND, 10, createZombie, this);
     //this.createZombie();
     this.base = new Base(this, 500, 0, 'base');
-    this.time.addEvent({ delay: 500, callback: this.createZombie, callbackScope: this, repeat: 10 });
     this.physics.add.collider(this.missileGroup, this.zombieGroup, 
                               function(s1, s2) {                                
                                 self.hit(s1, s2);
@@ -85,19 +89,26 @@ export default class TowerDefense extends Phaser.Scene {
      
           self.hearts--;
            
-          self.setHearts();
+          self.updateText();
           t.destroy();
         }
     });
-  
+   this.background.on('pointerup', function (pointer) { 
+        this.createShooter(pointer.x, pointer.y);
+    }, this);
 
+  }
+  startGame() {
+    this.level++;
+    this.time.addEvent({ delay: 500 / this.level, callback: this.createZombie, callbackScope: this, repeat: this.level * 10 });
+    this.started = true;
   }
   hit(missle, zombie) {
     missle.hit(zombie);
     zombie.hit(missle);
     //this.createZombie();
     this.money++;
-    this.setHearts();
+    this.updateText();
     // sprite1.setX(0);
     // sprite1.setY(0);
     // sprite1.speed = 5;
@@ -107,13 +118,13 @@ export default class TowerDefense extends Phaser.Scene {
     //this.missile.setTrackMouse(false);
     //this.missile.setTarget(this.zombie);
   }
-  setHearts() {
+  updateText() {
     if (this.heartsText) {
       this.heartsText.destroy();
     }
   
     this.heartsText = this.add.text(16, 16,
-      'hearts: ' + this.hearts + ", money = " + this.money,
+      'hearts: ' + this.hearts + ", money = " + this.money + ", level = " + this.level,
       {fontSize: '32px', fill: '#000'});
   }
   addEvents() {
@@ -124,9 +135,15 @@ export default class TowerDefense extends Phaser.Scene {
 	}
  
 	
-  shootMissile() {
-    let shooter = this.towerGroup.get(this.game.config.width * Math.random(),this.game.config.height * Math.random());
-    shooter.setup(this.missileGroup, this.zombieGroup);
+  createShooter(x, y) {    
+    //let shooter = this.towerGroup.get(this.game.config.width * Math.random(),this.game.config.height * Math.random());
+    let shooterCost = 200;
+    if (this.money > shooterCost) {
+      this.money -= shooterCost;
+      let shooter = this.towerGroup.get(x, y);
+      shooter.setup(this.missileGroup, this.zombieGroup);
+      this.updateText();
+    }
     // this.missile = this.missileGroup.get(400, 350);    
     // this.missile.setTarget(this.zombieGroup);
     // this.missile.onAdd();
@@ -137,22 +154,14 @@ export default class TowerDefense extends Phaser.Scene {
     this.zombie.setup();
   }
   update(t, dt) {
-	// Loop over all keys
-		this.inputKeys.forEach(key => {
-			// If key was just pressed down, shoot the laser. We use JustDown to make sure this only fires once.
-			if (Phaser.Input.Keyboard.JustDown(key)) {
-				this.shootMissile();
-			}
-		});
- 
-
+	
  //   this.missile.update(dt);
     //this.zombie.update(dt);
   }
 
   zombieLeave() {
     hearts--;
-    setHearts();
+    this.updateText();
     this.zombie.setOrigin(0, 100);
 
   }

@@ -8,7 +8,7 @@ export default class Zombie extends Phaser.Physics.Arcade.Sprite {
           this.setActive(true);
     this.setVisible(true);  
       this.scene.events.on('addedtoscene', this.onAdd, this);
-      this.health = 4;
+      this.health = 1;
 
       } 
   

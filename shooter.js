@@ -15,7 +15,7 @@ export default class Shooter extends Phaser.Physics.Arcade.Sprite {
    // this.scene.time = time;
 		this.setSize(this.SIZE, this.SIZE);
 		this.setDisplaySize(this.SIZE,this.SIZE);
-		this.scene.time.addEvent({ delay: 500, callback: this.shoot, callbackScope: this, repeat:10});
+		this.scene.time.addEvent({ delay: 500, callback: this.shoot, callbackScope: this, repeat:100});
 	}
 
 	shoot() {
