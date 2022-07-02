@@ -1,4 +1,5 @@
 import TowerDefense from './tower_defense.js'
+import IntroScreen from './intro_screen.js'
 
 const config = {
   type: Phaser.AUTO,
@@ -11,7 +12,7 @@ const config = {
       debug: false
     }
   },
-  scene: [TowerDefense]
+  scene: [TowerDefense, IntroScreen]
 }
 
 export default new Phaser.Game(config);

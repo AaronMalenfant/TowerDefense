@@ -7,7 +7,9 @@ zombie.png:
   Copyright/Attribution Notice: Riley Gombart or ChessMasterRiley
   https://creativecommons.org/publicdomain/zero/1.0/
 
-Also some (but not all from): https://opengameart.org/content/konita-tutorials-making-a-top-down-zombie-shooter-in-scratch
+pixel-tank_b.png: https://opengameart.org/content/pixel-tank
+Also some (but not all from):
+https://opengameart.org/content/konita-tutorials-making-a-top-down-zombie-shooter-in-scratch
 Title:
     Grass for scratch background
 

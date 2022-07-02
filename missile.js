@@ -15,31 +15,36 @@ export default class Missile extends Phaser.Physics.Arcade.Sprite {
     this.setActive(true);
     this.setVisible(true);
     this.damage = 1;
+    //this.speed = 1;
     this.heatSeeking = false;
     this.target = null;
   }
-  onAdd(heatSeeking = false, damage = 1) {
+  onAdd(towerDetails, heatSeeking = false, damage = 1, size = 1) {
+    this.towerDetails = towerDetails;
+    this.SIZE = 10 * this.towerDetails.missleSize;
     this.setSize(this.SIZE, this.SIZE);
     this.setDisplaySize(this.SIZE, this.SIZE);
-    this.heatSeeking = heatSeeking;
-    this.damage = 1;
+    this.heatSeeking = this.towerDetails.heatSeeking;
+    this.damage = this.towerDetails.damage;
     this.target = this.targetGroup.getChildren()[0];
     this.rotation = Phaser.Math.Angle.Between(
       this.x, this.y,
-      this.target.x, this.target.y
+      this.target.x + 25, this.target.y
     );
+    
   }
   setTarget(targetGroup) {
     this.targetGroup = targetGroup;
   }
   preUpdate(time, delta) {
     if (this.targetGroup.getLength() == 0) {
+      console.log("destroy.")
       this.destroy();
       return;
     }
     super.preUpdate(time, delta);
 
-    if (this.heatSeeking) {
+    if (this.towerDetails.heatSeeking) {
       if (!this.targetGroup || this.targetGroup.getChildren().length == 0) {
         return;
       }
@@ -72,8 +77,9 @@ export default class Missile extends Phaser.Physics.Arcade.Sprite {
     }
 
     // move missile in direction facing
-    const vx = Math.cos(this.rotation) * this.speed
-    const vy = Math.sin(this.rotation) * this.speed
+    const vx = Math.cos(this.rotation) * this.towerDetails.missleSpeed;
+    const vy = Math.sin(this.rotation) * this.towerDetails.missleSpeed;
+    
 
     this.body.velocity.x = vx
     this.body.velocity.y = vy
